@@ -1,0 +1,33 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "doc": "apidoc -i ./ -o ./apidoc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qingfengbanmingyue/server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qingfengbanmingyue/server/issues"
+  },
+  "homepage": "https://github.com/qingfengbanmingyue/server#readme",
+  "dependencies": {
+    "apidoc": "^0.51.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "log4js": "^6.5.2",
+    "md5": "^2.3.0",
+    "mongodb": "^4.7.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.18",
+    "winston": "^3.8.0"
+  },
+  "description": ""
+}
