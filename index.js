@@ -30,13 +30,13 @@ const rootuser = require('./router/root')
 const adminuser = require('./router/adminuser')
 
 
+//暴露api文档
+app.use(express.static(join(__dirname, '/apidoc')))
 
+//api文档接口
 app.get('/doc', (req, res) => {
-  console.log(join(__dirname, '/apidoc', 'assets'))
   res.sendFile(join(__dirname, "/apidoc", "index.html"))
 })
-
-
 
 app.use(express.urlencoded())
 
@@ -51,14 +51,11 @@ app.use('/device', device)
 //挂载订单路由
 app.use('/order', order)
 
-//暴露api文档
-app.use(express.static(join(__dirname, '/apidoc')))
 
 //挂载轮播图路由
 app.use('/banner', banner)
 
-//暴露轮播图资源
-app.use(express.static(join(__dirname, '/bannerImg')))
+
 
 //挂载商品路由
 app.use('/commodity', commodity)
@@ -78,8 +75,8 @@ app.use('/admin', adminuser)
 //挂载用户路由
 app.use('/user', login)
 
-//暴露静态文件(头像)资源
-app.use(express.static(join(__dirname, '/avaratimg')))
+//暴露静态文件(图片)资源
+app.use(express.static(join(__dirname, '/img')))
 
 //挂载上传头像路由
 app.use('/avarat', avarat)

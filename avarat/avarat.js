@@ -1,9 +1,13 @@
-const { json } = require('express')
+const {
+  json
+} = require('express')
 const express = require('express')
 const router = express.Router()
 const fs = require('fs')
 const multer = require('multer')
-const upload = multer({ dest: 'avaratImg/' }).single('avarat')
+const upload = multer({
+  dest: 'img/avaratImg'
+}).single('avarat')
 
 //链接数据库
 const client = require('../db/db')
@@ -20,7 +24,9 @@ router.post('', async (req, res, next) => {
     let avarat_ = await insertowner("avarat")
     let id = await avarat_.find().toArray()
     let _id = ++id.length
-    let avarat = { _id }
+    let avarat = {
+      _id
+    }
     avarat.create_time = new Date()
     avarat.update_time = new Date()
     avarat.user = +req.body.user
@@ -32,11 +38,13 @@ router.post('', async (req, res, next) => {
         msg: "请上传正确格式的图片！"
       })
     }
-    let findres = await avarat_.find({ user: +req.body.user }).toArray()
-    if(!findres.length){
+    let findres = await avarat_.find({
+      user: +req.body.user
+    }).toArray()
+    if (!findres.length) {
       res.json({
-        code:7001,
-        msg:"您已经上传过头像了"
+        code: 7001,
+        msg: "您已经上传过头像了"
       })
     }
     let reslut = await avarat_.insertOne(avarat)
@@ -45,7 +53,7 @@ router.post('', async (req, res, next) => {
         code: 200,
         msg: "上传成功！",
       })
-    }else{
+    } else {
       res.json({
         code: 7002,
         msg: "上传失败！"
@@ -77,7 +85,9 @@ router.put('', async (req, res, next) => {
         msg: "请上传正确格式的图片！"
       })
     }
-    let reslut = await avarat_.findOne({ user: +req.body.user })
+    let reslut = await avarat_.findOne({
+      user: +req.body.user
+    })
     if (reslut.length) {
       res.json({
         code: 7005,
@@ -87,7 +97,11 @@ router.put('', async (req, res, next) => {
     fs.rm(reslut.avarat_path, err => {
       console.log(err);
     })
-    let updateres = await avarat_.updateOne({ user: +req.body.user }, { $set: avarat })
+    let updateres = await avarat_.updateOne({
+      user: +req.body.user
+    }, {
+      $set: avarat
+    })
     if (!updateres.acknowledged) {
       res.json({
         code: 7006,

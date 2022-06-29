@@ -3,7 +3,7 @@ const router = express.Router()
 const fs = require('fs')
 const multer = require('multer')
 const upload = multer({
-  dest: 'bannerImg/'
+  dest: 'img/bannerImg'
 }).single('banner')
 
 const client = require('../db/db')
